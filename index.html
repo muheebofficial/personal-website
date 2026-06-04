@@ -505,13 +505,20 @@ body.cursor-hover .cursor-ring { width: 52px; height: 52px; opacity: .6; }
   background: var(--ink-mid);
   border: 1px solid rgba(245,240,232,.04);
   transition: .4s var(--ease);
+  cursor: pointer;
 }
+.venture-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform .3s;
+}
+.venture-card:hover::before { transform: scaleX(1); }
 .venture-card__bg {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
-  opacity: .15; transition: opacity .4s; filter: grayscale(40%);
+  opacity: .1; transition: opacity .4s; filter: grayscale(40%);
 }
-.venture-card:hover .venture-card__bg { opacity: .25; }
+.venture-card:hover .venture-card__bg { opacity: .2; }
 .venture-card__overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(10,9,8,.95) 0%, rgba(10,9,8,.4) 60%, transparent 100%);
@@ -542,7 +549,7 @@ body.cursor-hover .cursor-ring { width: 52px; height: 52px; opacity: .6; }
 .venture-card--accent .venture-card__tag { color: var(--ink); background: rgba(10,9,8,.12); border-color: rgba(10,9,8,.2); }
 
 /* ============================================================
-   PROCESS / HOW I WORK
+   PROCESS
 ============================================================ */
 .process { background: var(--ink); }
 .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 64px; }
@@ -624,162 +631,11 @@ body.cursor-hover .cursor-ring { width: 52px; height: 52px; opacity: .6; }
 @keyframes waPulse { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
 
 /* ============================================================
-   PAGE — ABOUT
-============================================================ */
-.about-hero { background: var(--ink); padding: 100px 0 0; }
-.about-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.about-hero__name-block { margin-bottom: 20px; }
-.about-hero__name {
-  font-family: var(--ff-display); font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 300; line-height: 1.05; color: var(--paper);
-}
-.about-hero__name em { color: var(--gold); font-style: italic; display: block; }
-.about-hero__title {
-  font-size: .875rem; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--muted); margin-top: 16px;
-}
-.about-hero__body { font-size: 1.05rem; color: var(--muted-light); line-height: 1.85; margin-bottom: 32px; }
-.about-hero__img-block { position: relative; }
-.about-hero__img-frame {
-  position: relative; overflow: hidden;
-  background: var(--ink-light); height: 560px;
-}
-.about-hero__img-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) contrast(1.05); }
-.about-hero__img-frame::before {
-  content: ''; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to bottom, transparent 50%, rgba(10,9,8,.5) 100%);
-}
-.about-hero__img-caption {
-  position: absolute; bottom: 24px; left: 24px; right: 24px; z-index: 2;
-  font-size: .75rem; color: rgba(245,240,232,.4); letter-spacing: .06em;
-}
-.about-hero__accent {
-  position: absolute; top: -20px; right: -20px; z-index: -1;
-  width: 200px; height: 200px; border: 1px solid rgba(201,167,108,.15);
-}
-.about-philosophy { background: var(--ink-90); }
-.about-philosophy__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.philosophy-quote {
-  font-family: var(--ff-display); font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-  font-weight: 300; color: var(--paper); line-height: 1.4; padding-left: 28px;
-  border-left: 2px solid var(--gold); font-style: italic;
-}
-.about-timeline { display: flex; flex-direction: column; gap: 0; }
-.timeline-item {
-  display: grid; grid-template-columns: 100px 1fr; gap: 24px;
-  padding: 28px 0; border-bottom: 1px solid rgba(245,240,232,.05);
-}
-.timeline-item__year { font-family: var(--ff-display); font-size: 1.2rem; color: var(--gold); font-weight: 400; }
-.timeline-item__title { font-weight: 600; color: var(--paper); margin-bottom: 6px; }
-.timeline-item__desc { font-size: .9rem; color: var(--muted); line-height: 1.65; }
-
-/* ============================================================
-   PAGE — SERVICES
-============================================================ */
-.services-hero { background: var(--ink); padding: 100px 0 80px; }
-.services-hero h1 { color: var(--paper); max-width: 800px; margin-bottom: 20px; }
-.services-hero p { color: var(--muted-light); max-width: 560px; font-size: 1.1rem; }
-.services-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px; }
-.service-detail-card {
-  background: var(--ink-mid); padding: 48px 40px;
-  border: 1px solid rgba(245,240,232,.04); transition: .3s var(--ease);
-  position: relative; overflow: hidden;
-}
-.service-detail-card::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: var(--gold); transform: scaleX(0); transition: transform .3s;
-}
-.service-detail-card:hover::after { transform: scaleX(1); }
-.service-detail-card:hover { background: var(--ink-light); }
-.service-detail-card__icon { font-size: 2rem; margin-bottom: 24px; }
-.service-detail-card__title { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; color: var(--paper); margin-bottom: 14px; }
-.service-detail-card__desc { font-size: .9rem; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
-.service-detail-card__includes { display: flex; flex-direction: column; gap: 8px; }
-.service-detail-card__include {
-  display: flex; align-items: center; gap: 10px;
-  font-size: .85rem; color: var(--muted-light);
-}
-.service-detail-card__include::before { content: '—'; color: var(--gold); font-family: var(--ff-display); }
-
-/* ============================================================
-   PAGE — CONTACT
-============================================================ */
-.contact-page { background: var(--ink); padding: 100px 0; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
-.contact-info { }
-.contact-info h1 { color: var(--paper); margin-bottom: 20px; }
-.contact-info > p { color: var(--muted-light); font-size: 1.05rem; line-height: 1.8; margin-bottom: 48px; }
-.contact-method {
-  display: flex; gap: 20px; align-items: flex-start;
-  padding: 28px 0; border-bottom: 1px solid rgba(245,240,232,.06);
-}
-.contact-method__icon {
-  width: 44px; height: 44px; background: var(--gold-dim);
-  border: 1px solid rgba(201,167,108,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0;
-}
-.contact-method__label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.contact-method__val { font-size: 1rem; color: var(--paper); font-weight: 500; }
-.contact-method__sub { font-size: .825rem; color: var(--muted); margin-top: 2px; }
-.contact-form-card {
-  background: var(--ink-mid); padding: 48px;
-  border: 1px solid rgba(245,240,232,.04);
-}
-.form-label-text {
-  display: block; font-size: .72rem; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
-}
-.form-input {
-  width: 100%; padding: 14px 16px;
-  background: rgba(245,240,232,.04); border: 1px solid rgba(245,240,232,.1);
-  color: var(--paper); font-family: var(--ff-body); font-size: .95rem;
-  outline: none; transition: .2s; margin-bottom: 20px;
-}
-.form-input:focus { border-color: var(--gold); background: rgba(201,167,108,.04); }
-.form-input::placeholder { color: rgba(245,240,232,.25); }
-textarea.form-input { resize: vertical; min-height: 130px; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.form-group-full { grid-column: span 2; }
-.contact-wa-block {
-  margin-top: 48px; padding: 28px; background: rgba(37,211,102,.06);
-  border: 1px solid rgba(37,211,102,.15);
-  display: flex; gap: 20px; align-items: center;
-}
-.contact-wa-block h5 { color: var(--paper); font-size: 1rem; margin-bottom: 4px; }
-.contact-wa-block p { font-size: .875rem; color: var(--muted); margin: 0; }
-
-/* ============================================================
-   PAGE — PROJECTS/VENTURES FULL
-============================================================ */
-.projects-hero { background: var(--ink); padding: 100px 0 72px; }
-.projects-hero h1 { color: var(--paper); max-width: 700px; margin-bottom: 16px; }
-.projects-full-grid { display: grid; grid-template-columns: 1fr; gap: 2px; margin-top: 64px; }
-.project-row {
-  display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 48px;
-  align-items: center; padding: 56px 0; border-bottom: 1px solid rgba(245,240,232,.06);
-  transition: .3s;
-}
-.project-row:hover { padding-left: 12px; }
-.project-row__num { font-family: var(--ff-display); font-size: 3rem; font-weight: 300; color: rgba(245,240,232,.1); }
-.project-row__info h3 { font-family: var(--ff-display); font-size: 1.8rem; font-weight: 400; color: var(--paper); margin-bottom: 8px; }
-.project-row__info p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
-.project-row__meta { text-align: right; }
-.project-row__status {
-  display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--gold); background: var(--gold-dim);
-  border: 1px solid rgba(201,167,108,.2); padding: 5px 14px;
-  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 100%, 5px 100%);
-  margin-bottom: 8px;
-}
-.project-row__industry { font-size: .8rem; color: var(--muted); display: block; margin-top: 8px; }
-
-/* ============================================================
    RESPONSIVE
 ============================================================ */
 @media (max-width: 1024px) {
-  .authority__grid, .invest-grid, .about-hero__grid, .contact-grid, .about-philosophy__grid { grid-template-columns: 1fr; gap: 48px; }
-  .cases__grid, .ventures__grid, .services-detail-grid { grid-template-columns: 1fr; }
+  .authority__grid { grid-template-columns: 1fr; gap: 48px; }
+  .cases__grid, .ventures__grid { grid-template-columns: 1fr; }
   .case-card--featured { grid-column: span 1; grid-template-columns: 1fr; gap: 24px; }
   .insights__grid { grid-template-columns: 1fr 1fr; }
   .insight-card--large { grid-column: span 1; }
@@ -788,11 +644,9 @@ textarea.form-input { resize: vertical; min-height: 130px; }
   .service-row { grid-template-columns: 60px 1fr; gap: 16px; }
   .service-row__desc, .service-row__tag { display: none; }
   .hero__portrait-block { display: none; }
-  .project-row { grid-template-columns: 60px 1fr; gap: 20px; }
-  .project-row__meta { display: none; }
 }
+
 @media (max-width: 768px) {
-  :root { }
   .container { padding: 0 20px; }
   .section { padding: 80px 0; }
   .nav__links, .nav__cta { display: none; }
@@ -803,14 +657,10 @@ textarea.form-input { resize: vertical; min-height: 130px; }
   .authority__cards { grid-template-columns: 1fr; }
   .authority__card--full { grid-column: span 1; }
   .insights__grid { grid-template-columns: 1fr; }
-  .process__steps { grid-template-columns: 1fr 1fr; }
+  .process__steps { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr; }
-  .contact-form-card { padding: 28px 20px; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-group-full { grid-column: span 1; }
+  .cta-section__btns { flex-direction: column; }
   .hero__cta { flex-direction: column; align-items: flex-start; }
-  .cta-section__btns { flex-direction: column; align-items: center; }
-  .about-hero__img-block { display: none; }
   .service-row { grid-template-columns: 40px 1fr; }
 }
 </style>
@@ -827,23 +677,22 @@ textarea.form-input { resize: vertical; min-height: 130px; }
   💬
 </a>
 
-<!-- ======= NAV ======= -->
+<!-- NAV -->
 <nav class="nav" role="navigation">
   <div class="nav__inner">
-    <div class="nav__logo" onclick="goPage('home')">
+    <div class="nav__logo" onclick="scrollToId('home')">
       <div class="nav__logo-dot"></div>
       Muheeb Sulaiman
     </div>
     <ul class="nav__links">
-      <li><a class="nav__link active" onclick="goPage('home')">Home</a></li>
-      <li><a class="nav__link" onclick="goPage('about')">About</a></li>
-      <li><a class="nav__link" onclick="goPage('services')">Services</a></li>
-      <li><a class="nav__link" onclick="goPage('cases')">Results</a></li>
-      <li><a class="nav__link" onclick="goPage('insights')">Insights</a></li>
-      <li><a class="nav__link" onclick="goPage('ventures')">Ventures</a></li>
+      <li><a class="nav__link active" onclick="scrollToId('home')">Home</a></li>
+      <li><a class="nav__link" href="#services" onclick="event.preventDefault(); scrollToId('services')">Services</a></li>
+      <li><a class="nav__link" href="#cases" onclick="event.preventDefault(); scrollToId('cases')">Results</a></li>
+      <li><a class="nav__link" href="#insights" onclick="event.preventDefault(); scrollToId('insights')">Insights</a></li>
+      <li><a class="nav__link" href="#ventures" onclick="event.preventDefault(); scrollToId('ventures')">Ventures</a></li>
     </ul>
     <div class="nav__cta">
-      <button class="btn btn--primary" onclick="goPage('contact')"><span>Work With Me</span></button>
+      <a href="https://wa.me/2349110172901" target="_blank" class="btn btn--primary"><span>Work With Me</span></a>
     </div>
     <div class="nav__hamburger" onclick="toggleMob()" id="hamburger">
       <span></span><span></span><span></span>
@@ -852,179 +701,372 @@ textarea.form-input { resize: vertical; min-height: 130px; }
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <a onclick="goPage('home'); closeMob()">Home</a>
-  <a onclick="goPage('about'); closeMob()">About</a>
-  <a onclick="goPage('services'); closeMob()">Services</a>
-  <a onclick="goPage('cases'); closeMob()">Results</a>
-  <a onclick="goPage('insights'); closeMob()">Insights</a>
-  <a onclick="goPage('ventures'); closeMob()">Ventures</a>
-  <a onclick="goPage('contact'); closeMob()">Contact</a>
+  <a onclick="scrollToId('home'); closeMob()">Home</a>
+  <a onclick="scrollToId('services'); closeMob()">Services</a>
+  <a onclick="scrollToId('cases'); closeMob()">Results</a>
+  <a onclick="scrollToId('insights'); closeMob()">Insights</a>
+  <a onclick="scrollToId('ventures'); closeMob()">Ventures</a>
 </div>
 
-<!-- ==========================================
-  PAGE: HOME
-=========================================== -->
-<div class="page active" id="page-home">
-
-  <!-- HERO -->
-  <section class="hero" aria-label="Hero">
-    <div class="hero__noise"></div>
-    <div class="hero__grid-bg"></div>
-    <div class="hero__glow"></div>
-    <div class="hero__portrait-block" role="presentation">
-      <img class="hero__portrait-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="">
-      <div class="hero__portrait-grid"></div>
-    </div>
-    <div class="container" style="width:100%">
-      <div class="hero__content">
-        <div class="hero__eyebrow">
-          <div class="hero__eyebrow-line"></div>
-          <span class="hero__eyebrow-text">Digital Marketing Strategist · Founder · Operator</span>
+<!-- HERO -->
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero__noise"></div>
+  <div class="hero__grid-bg"></div>
+  <div class="hero__glow"></div>
+  <div class="hero__portrait-block" role="presentation">
+    <img class="hero__portrait-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="">
+    <div class="hero__portrait-grid"></div>
+  </div>
+  <div class="container" style="width:100%">
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <div class="hero__eyebrow-line"></div>
+        <span class="hero__eyebrow-text">Digital Marketing Strategist · Founder · Operator</span>
+      </div>
+      <h1>I Build <em>Revenue Systems</em> That Help Businesses Grow — Not Just Marketing Campaigns</h1>
+      <p class="hero__sub">I help businesses generate leads, automate growth, and scale using digital marketing, AI, and conversion systems. No vanity metrics. Pure outcomes.</p>
+      <div class="hero__cta">
+        <a href="https://wa.me/2349110172901" target="_blank" class="btn btn--primary"><span>→ Work With Me</span></a>
+        <button class="btn btn--ghost" onclick="scrollToId('cases')"><span>View Results</span></button>
+      </div>
+      <div class="hero__metrics">
+        <div>
+          <div class="hero__metric-num">7<em>+</em></div>
+          <div class="hero__metric-label">Years in Digital Marketing</div>
         </div>
-        <h1>I Build <em>Revenue Systems</em> That Help Businesses Grow — Not Just Marketing Campaigns</h1>
-        <p class="hero__sub">I help businesses generate leads, automate growth, and scale using digital marketing, AI, and conversion systems. No vanity metrics. Pure outcomes.</p>
-        <div class="hero__cta">
-          <button class="btn btn--primary btn--lg" onclick="goPage('contact')"><span>→ Work With Me</span></button>
-          <button class="btn btn--ghost btn--lg" onclick="goPage('cases')"><span>View Results</span></button>
+        <div>
+          <div class="hero__metric-num">50<em>+</em></div>
+          <div class="hero__metric-label">Businesses Scaled</div>
         </div>
-        <div class="hero__metrics">
-          <div>
-            <div class="hero__metric-num">7<em>+</em></div>
-            <div class="hero__metric-label">Years in Digital Marketing</div>
-          </div>
-          <div>
-            <div class="hero__metric-num">50<em>+</em></div>
-            <div class="hero__metric-label">Businesses Scaled</div>
-          </div>
-          <div>
-            <div class="hero__metric-num">3</div>
-            <div class="hero__metric-label">Active Ventures</div>
-          </div>
-          <div>
-            <div class="hero__metric-num">∞</div>
-            <div class="hero__metric-label">Systems Built to Last</div>
-          </div>
+        <div>
+          <div class="hero__metric-num">3</div>
+          <div class="hero__metric-label">Active Ventures</div>
+        </div>
+        <div>
+          <div class="hero__metric-num">∞</div>
+          <div class="hero__metric-label">Systems Built to Last</div>
         </div>
       </div>
-    </div>
-    <div class="hero__scroll-hint">
-      <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <span class="ticker__item">Digital Marketing Strategy</span>
-      <span class="ticker__item">SEO & Organic Growth</span>
-      <span class="ticker__item">Revenue Systems</span>
-      <span class="ticker__item">AI & Automation</span>
-      <span class="ticker__item">Performance Ads</span>
-      <span class="ticker__item">Lead Generation</span>
-      <span class="ticker__item">Conversion Funnels</span>
-      <span class="ticker__item">Business Scaling</span>
-      <span class="ticker__item">Digital Marketing Strategy</span>
-      <span class="ticker__item">SEO & Organic Growth</span>
-      <span class="ticker__item">Revenue Systems</span>
-      <span class="ticker__item">AI & Automation</span>
-      <span class="ticker__item">Performance Ads</span>
-      <span class="ticker__item">Lead Generation</span>
-      <span class="ticker__item">Conversion Funnels</span>
-      <span class="ticker__item">Business Scaling</span>
     </div>
   </div>
+  <div class="hero__scroll-hint">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
 
-  <!-- AUTHORITY -->
-  <section class="section authority" aria-label="Authority">
-    <div class="container">
-      <div class="authority__grid">
-        <div class="authority__left">
-          <div class="label">The Work</div>
-          <p class="authority__statement">I don't do marketing for marketing's sake. I build <em>systems</em> — the kind that compound, scale, and still work when you're not watching.</p>
-          <p class="authority__body">Most businesses don't have a marketing problem. They have a systems problem. They're running ads without funnels, creating content without distribution, and chasing metrics instead of revenue.</p>
-          <div class="authority__tags">
-            <span class="authority__tag">Correct Marketing NG</span>
-            <span class="authority__tag">International Edu. Recruitment</span>
-            <span class="authority__tag">Chef Daddy Cuisine</span>
-            <span class="authority__tag">AI & Automation</span>
-            <span class="authority__tag">Performance Marketing</span>
-          </div>
-        </div>
-        <div class="authority__right">
-          <div class="authority__cards">
-            <div class="authority__card">
-              <div class="authority__card-icon">🎯</div>
-              <div class="authority__card-title">Performance Marketing</div>
-              <div class="authority__card-text">Campaigns engineered for ROI — not reach. Every naira spent is tracked to revenue.</div>
-            </div>
-            <div class="authority__card">
-              <div class="authority__card-icon">🔍</div>
-              <div class="authority__card-title">SEO & Organic Systems</div>
-              <div class="authority__card-text">Content strategies that compound. Traffic that grows without ongoing ad spend.</div>
-            </div>
-            <div class="authority__card">
-              <div class="authority__card-icon">⚡</div>
-              <div class="authority__card-title">AI & Automation</div>
-              <div class="authority__card-text">Workflows that replace manual processes and scale operations at zero marginal cost.</div>
-            </div>
-            <div class="authority__card authority__card--full">
-              <div class="authority__card-icon">📐</div>
-              <div class="authority__card-title">Founder of Correct Marketing NG</div>
-              <div class="authority__card-text">A performance-driven digital agency serving businesses in Nigeria and beyond. Built on systems, not hustle.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES PREVIEW -->
-  <section class="section services" aria-label="Services">
-    <div class="container">
-      <div class="services__header">
-        <div class="label">What I Do</div>
-        <h2 class="display-lg" style="color:var(--paper); margin-bottom:16px;">Five Ways I Help Businesses Grow</h2>
-        <p class="body-lg">Not a generalist. A strategist. Here's where I operate.</p>
-      </div>
-      <div class="services__list">
-        <div class="service-row">
-          <span class="service-row__num">01</span>
-          <span class="service-row__title">Digital Marketing Strategy</span>
-          <span class="service-row__desc">Full-funnel strategy connecting your market position to revenue outcomes. No guesswork.</span>
-          <span class="service-row__tag">Strategy</span>
-        </div>
-        <div class="service-row">
-          <span class="service-row__num">02</span>
-          <span class="service-row__title">SEO & Organic Growth</span>
-          <span class="service-row__desc">Sustainable traffic growth through content, technical SEO, and strategic link building.</span>
-          <span class="service-row__tag">Growth</span>
-        </div>
-        <div class="service-row">
-          <span class="service-row__num">03</span>
-          <span class="service-row__title">Performance Ads</span>
-          <span class="service-row__desc">Facebook, Google, LinkedIn ads optimized for revenue. Every campaign has clear ROI targets.</span>
-          <span class="service-row__tag">Ads</span>
-        </div>
-        <div class="service-row">
-          <span class="service-row__num">04</span>
-          <span class="service-row__title">AI & Automation</span>
-          <span class="service-row__desc">Systems that handle repetitive tasks so you scale without scaling your team.</span>
-          <span class="service-row__tag">Automation</span>
-        </div>
-        <div class="service-row">
-          <span class="service-row__num">05</span>
-          <span class="service-row__title">Conversion Rate Optimization</span>
-          <span class="service-row__desc">Turn existing traffic into customers. Data-driven testing and funnel redesign.</span>
-          <span class="service-row__tag">CRO</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span class="ticker__item">Digital Marketing Strategy</span>
+    <span class="ticker__item">SEO & Organic Growth</span>
+    <span class="ticker__item">Revenue Systems</span>
+    <span class="ticker__item">AI & Automation</span>
+    <span class="ticker__item">Performance Ads</span>
+    <span class="ticker__item">Lead Generation</span>
+    <span class="ticker__item">Conversion Funnels</span>
+    <span class="ticker__item">Business Scaling</span>
+    <span class="ticker__item">Digital Marketing Strategy</span>
+    <span class="ticker__item">SEO & Organic Growth</span>
+    <span class="ticker__item">Revenue Systems</span>
+    <span class="ticker__item">AI & Automation</span>
+    <span class="ticker__item">Performance Ads</span>
+    <span class="ticker__item">Lead Generation</span>
+    <span class="ticker__item">Conversion Funnels</span>
+    <span class="ticker__item">Business Scaling</span>
+  </div>
 </div>
 
-<!-- PAGES STRUCTURE FOR OTHER PAGES (CONTACT, ABOUT, etc) -->
+<!-- AUTHORITY -->
+<section class="section authority" aria-label="Authority">
+  <div class="container">
+    <div class="authority__grid">
+      <div class="authority__left">
+        <div class="label">The Work</div>
+        <p class="authority__statement">I don't do marketing for marketing's sake. I build <em>systems</em> — the kind that compound, scale, and still work when you're not watching.</p>
+        <p class="authority__body">Most businesses don't have a marketing problem. They have a systems problem. They're running ads without funnels, creating content without distribution, and chasing metrics instead of revenue.</p>
+        <div class="authority__tags">
+          <span class="authority__tag">Correct Marketing NG</span>
+          <span class="authority__tag">International Edu. Recruitment</span>
+          <span class="authority__tag">Chef Daddy Cuisine</span>
+          <span class="authority__tag">AI & Automation</span>
+          <span class="authority__tag">Performance Marketing</span>
+        </div>
+      </div>
+      <div class="authority__right">
+        <div class="authority__cards">
+          <div class="authority__card">
+            <div class="authority__card-icon">🎯</div>
+            <div class="authority__card-title">Performance Marketing</div>
+            <div class="authority__card-text">Campaigns engineered for ROI — not reach. Every naira spent is tracked to revenue.</div>
+          </div>
+          <div class="authority__card">
+            <div class="authority__card-icon">🔍</div>
+            <div class="authority__card-title">SEO & Organic Systems</div>
+            <div class="authority__card-text">Content strategies that compound. Traffic that grows without ongoing ad spend.</div>
+          </div>
+          <div class="authority__card">
+            <div class="authority__card-icon">⚡</div>
+            <div class="authority__card-title">AI & Automation</div>
+            <div class="authority__card-text">Workflows that replace manual processes and scale operations at zero marginal cost.</div>
+          </div>
+          <div class="authority__card authority__card--full">
+            <div class="authority__card-icon">📐</div>
+            <div class="authority__card-title">Founder of Correct Marketing NG</div>
+            <div class="authority__card-text">A performance-driven digital agency serving businesses in Nigeria and beyond. Built on systems, not hustle.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services" aria-label="Services">
+  <div class="container">
+    <div class="services__header">
+      <div class="label">What I Do</div>
+      <h2 class="display-lg" style="color:var(--paper); margin-bottom:16px;">Five Ways I Help Businesses Grow</h2>
+      <p class="body-lg">Not a generalist. A strategist. Here's where I operate.</p>
+    </div>
+    <div class="services__list">
+      <div class="service-row">
+        <span class="service-row__num">01</span>
+        <span class="service-row__title">Digital Marketing Strategy</span>
+        <span class="service-row__desc">Full-funnel strategy connecting your market position to revenue outcomes. No guesswork.</span>
+        <span class="service-row__tag">Strategy</span>
+      </div>
+      <div class="service-row">
+        <span class="service-row__num">02</span>
+        <span class="service-row__title">SEO & Organic Growth</span>
+        <span class="service-row__desc">Sustainable traffic growth through content, technical SEO, and strategic link building.</span>
+        <span class="service-row__tag">Growth</span>
+      </div>
+      <div class="service-row">
+        <span class="service-row__num">03</span>
+        <span class="service-row__title">Performance Ads</span>
+        <span class="service-row__desc">Facebook, Google, LinkedIn ads optimized for revenue. Every campaign has clear ROI targets.</span>
+        <span class="service-row__tag">Ads</span>
+      </div>
+      <div class="service-row">
+        <span class="service-row__num">04</span>
+        <span class="service-row__title">AI & Automation</span>
+        <span class="service-row__desc">Systems that handle repetitive tasks so you scale without scaling your team.</span>
+        <span class="service-row__tag">Automation</span>
+      </div>
+      <div class="service-row">
+        <span class="service-row__num">05</span>
+        <span class="service-row__title">Conversion Rate Optimization</span>
+        <span class="service-row__desc">Turn existing traffic into customers. Data-driven testing and funnel redesign.</span>
+        <span class="service-row__tag">CRO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section cases" id="cases" aria-label="Case Studies">
+  <div class="container">
+    <div class="label">Results</div>
+    <h2 class="display-lg" style="color:var(--paper); margin-bottom:48px;">Clients We've Built Scalable Systems For</h2>
+    <div class="cases__grid">
+      <div class="case-card">
+        <div class="case-card__label">Case Study</div>
+        <div class="case-card__client">Chef Daddy Cuisine</div>
+        <div class="case-card__type">Food & Beverage | Revenue Scaling</div>
+        <div class="case-card__metrics">
+          <div>
+            <div class="case-metric__val">240%</div>
+            <div class="case-metric__label">Revenue Growth</div>
+          </div>
+          <div>
+            <div class="case-metric__val">3.2x</div>
+            <div class="case-metric__label">ROAS</div>
+          </div>
+        </div>
+        <div class="case-card__summary">Built integrated ad strategy across Google & Facebook, optimized funnels, implemented CRM automation resulting in consistent month-over-month growth.</div>
+        <div class="case-card__arrow">→</div>
+      </div>
+      <div class="case-card">
+        <div class="case-card__label">Case Study</div>
+        <div class="case-card__client">International Edu Recruitment</div>
+        <div class="case-card__type">Education | Lead Generation</div>
+        <div class="case-card__metrics">
+          <div>
+            <div class="case-metric__val">450</div>
+            <div class="case-metric__label">Qualified Leads/Mo</div>
+          </div>
+          <div>
+            <div class="case-metric__val">$8</div>
+            <div class="case-metric__label">Cost Per Lead</div>
+          </div>
+        </div>
+        <div class="case-card__summary">Designed full marketing funnel from awareness to enrollment. Implemented SEO, paid ads, and email automation cutting acquisition cost by 45%.</div>
+        <div class="case-card__arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="section insights" id="insights" aria-label="Insights">
+  <div class="container">
+    <div class="insights__header">
+      <div>
+        <div class="label">Thought Leadership</div>
+        <h2 class="display-lg" style="color:var(--paper);">Ideas Worth Exploring</h2>
+      </div>
+      <a href="#" class="btn btn--text">View All Articles</a>
+    </div>
+    <div class="insights__grid">
+      <div class="insight-card insight-card--large">
+        <div class="insight-card__num">01</div>
+        <div class="insight-card__cat">Systems Design</div>
+        <div class="insight-card__title">Why Your Marketing Fails Without A System</div>
+        <div class="insight-card__excerpt">Most businesses treat marketing as a collection of tactics rather than a system. Here's why that's costing you revenue and how to fix it.</div>
+        <div class="insight-card__meta">6 min read</div>
+        <div class="insight-card__cta">Read Article</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-card__num">02</div>
+        <div class="insight-card__cat">AI & Automation</div>
+        <div class="insight-card__title">The Automation That's Replacing Marketers</div>
+        <div class="insight-card__excerpt">Not all AI is hype. These automation systems are cutting marketing teams' workload in half.</div>
+        <div class="insight-card__meta">4 min read</div>
+        <div class="insight-card__cta">Read Article</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-card__num">03</div>
+        <div class="insight-card__cat">Revenue Growth</div>
+        <div class="insight-card__title">The Revenue System Framework</div>
+        <div class="insight-card__excerpt">A simple but powerful model for thinking about how sales, marketing, and operations work together.</div>
+        <div class="insight-card__meta">8 min read</div>
+        <div class="insight-card__cta">Read Article</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section class="section ventures" id="ventures" aria-label="Ventures">
+  <div class="container">
+    <div class="label">Active Ventures</div>
+    <h2 class="display-lg" style="color:var(--paper); margin-bottom:48px;">Companies I've Founded</h2>
+    <div class="ventures__grid">
+      <div class="venture-card">
+        <div class="venture-card__bg"></div>
+        <div class="venture-card__overlay"></div>
+        <div class="venture-card__content">
+          <div class="venture-card__tag">Performance Agency</div>
+          <div class="venture-card__name">Correct Marketing NG</div>
+          <div class="venture-card__desc">Performance-driven digital marketing agency helping Nigerian and international businesses scale through systems.</div>
+          <a href="#" class="venture-card__link">Visit Site</a>
+        </div>
+      </div>
+      <div class="venture-card">
+        <div class="venture-card__bg"></div>
+        <div class="venture-card__overlay"></div>
+        <div class="venture-card__content">
+          <div class="venture-card__tag">EdTech</div>
+          <div class="venture-card__name">International Edu Recruitment</div>
+          <div class="venture-card__desc">Helping African students access global educational opportunities through our recruitment platform.</div>
+          <a href="#" class="venture-card__link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" aria-label="Process">
+  <div class="container">
+    <div class="label">The Journey</div>
+    <h2 class="display-lg" style="color:var(--paper);">How We Work Together</h2>
+    <div class="process__steps">
+      <div class="process-step">
+        <div class="process-step__num">01</div>
+        <div class="process-step__title">Audit & Strategy</div>
+        <div class="process-step__text">Deep dive into your business, market, and existing systems to find friction and opportunity.</div>
+        <div class="process-step__connector"></div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">02</div>
+        <div class="process-step__title">Design Solution</div>
+        <div class="process-step__text">Build a custom roadmap that connects marketing to revenue outcomes with clear KPIs.</div>
+        <div class="process-step__connector"></div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">03</div>
+        <div class="process-step__title">Execute & Iterate</div>
+        <div class="process-step__text">Run campaigns, collect data, and continuously optimize for results and efficiency.</div>
+        <div class="process-step__connector"></div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">04</div>
+        <div class="process-step__title">Scale & Automate</div>
+        <div class="process-step__text">Hand off systems that run on their own while we push toward new growth frontiers.</div>
+        <div class="process-step__connector"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="section cta-section" aria-label="Call to Action">
+  <div class="cta-section__bg"></div>
+  <div class="container">
+    <div class="cta-section__content">
+      <h2 class="display-lg" style="color:var(--paper);">Ready to Build Your Revenue System?</h2>
+      <p>Let's discuss how we can apply these proven frameworks to your business.</p>
+      <div class="cta-section__btns">
+        <a href="https://wa.me/2349110172901" target="_blank" class="btn btn--primary"><span>Start Conversation</span></a>
+        <a href="https://calendly.com/" target="_blank" class="btn btn--ghost"><span>Schedule Call</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo-text">Muheeb<span>.</span></div>
+        <p>Building revenue systems that scale. Digital strategist, founder, operator.</p>
+      </div>
+      <div class="footer__col">
+        <h6>Services</h6>
+        <div class="footer__links">
+          <a href="#services" class="footer__link">Digital Strategy</a>
+          <a href="#services" class="footer__link">SEO & Growth</a>
+          <a href="#services" class="footer__link">Performance Ads</a>
+          <a href="#services" class="footer__link">Automation</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h6>Ventures</h6>
+        <div class="footer__links">
+          <a href="#" class="footer__link">Correct Marketing NG</a>
+          <a href="#" class="footer__link">Edu Recruitment</a>
+          <a href="#" class="footer__link">Chef Daddy Cuisine</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h6>Connect</h6>
+        <div class="footer__links">
+          <a href="https://twitter.com" target="_blank" class="footer__link">Twitter</a>
+          <a href="https://linkedin.com" target="_blank" class="footer__link">LinkedIn</a>
+          <a href="https://wa.me/2349110172901" target="_blank" class="footer__link">WhatsApp</a>
+          <a href="mailto:hello@muheeb.com" class="footer__link">Email</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Muheeb Sulaiman. All rights reserved.</p>
+      <p>Engineered for revenue.</p>
+    </div>
+  </div>
+</footer>
 
 <!-- Scripts -->
 <script>
@@ -1059,17 +1101,6 @@ textarea.form-input { resize: vertical; min-height: 130px; }
     });
   });
 
-  // Page navigation
-  function goPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const targetPage = document.getElementById('page-' + page);
-    if (targetPage) {
-      targetPage.classList.add('active');
-      closeMob();
-      window.scrollTo(0, 0);
-    }
-  }
-
   // Mobile menu
   function toggleMob() {
     document.getElementById('mobMenu').classList.toggle('open');
@@ -1081,14 +1112,21 @@ textarea.form-input { resize: vertical; min-height: 130px; }
     document.getElementById('hamburger').classList.remove('open');
   }
 
-  // Smooth scroll
+  // Scroll
+  function scrollToId(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      closeMob();
+    }
+  }
+
+  // Nav active state
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+      const target = this.getAttribute('href').substring(1);
+      scrollToId(target);
     });
   });
 </script>
