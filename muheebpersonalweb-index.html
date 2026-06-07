@@ -1767,7 +1767,7 @@ function goPage(name, push = true) {
     l.classList.toggle('active', !!match);
   });
   if (push) {
-    try { history.pushState(null, '', '#' + name); } catch (e) { location.hash = name; }
+    try { history.pushState(null, '', '/' + name); } catch (e) { location.hash = name; }
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
