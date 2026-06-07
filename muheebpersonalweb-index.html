@@ -852,13 +852,13 @@ textarea.form-input { resize: vertical; min-height: 130px; }
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <a href="#home" onclick="closeMob()">Home</a>
-  <a href="#about" onclick="closeMob()">About</a>
-  <a href="#services" onclick="closeMob()">Services</a>
-  <a href="#cases" onclick="closeMob()">Results</a>
-  <a href="#insights" onclick="closeMob()">Insights</a>
-  <a href="#ventures" onclick="closeMob()">Ventures</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="home" onclick="closeMob()">Home</a>
+  <a href="about" onclick="closeMob()">About</a>
+  <a href="services" onclick="closeMob()">Services</a>
+  <a href="cases" onclick="closeMob()">Results</a>
+  <a href="insights" onclick="closeMob()">Insights</a>
+  <a href="ventures" onclick="closeMob()">Ventures</a>
+  <a href="contact" onclick="closeMob()">Contact</a>
 </div>
 
 <!-- ==========================================
@@ -1665,6 +1665,25 @@ textarea.form-input { resize: vertical; min-height: 130px; }
   </div>
 </div>
 
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
+const path = window.location.pathname.replace('/', '');
+
+if (path) {
+    goPage(path, false);
+} else {
+    goPage('home', false);
+}
+
+history.pushState(null, '', '/' + name);
+
 <!-- ======= FOOTER ======= -->
 <footer class="footer" role="contentinfo">
   <div class="container">
@@ -1704,7 +1723,7 @@ textarea.form-input { resize: vertical; min-height: 130px; }
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2025 Muheeb Sulaiman. All rights reserved.</p>
+      <p>© 2026 Muheeb Sulaiman. All rights reserved.</p>
       <p>Not just marketing — revenue systems that scale.</p>
     </div>
   </div>
